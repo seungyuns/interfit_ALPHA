@@ -5,13 +5,13 @@ from django.core.exceptions import ImproperlyConfigured
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-SECRET_KEY ="u(=gf%t)yleg@y!m^s5%5sabx6p+*g@f_)h0zt+n^=v&1o9mdp"
+SECRET_KEY =os.environ['SECRET_KEY']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-env.gnbh4iahs6.ap-northeast-2.elasticbeanstalk.com']
 
 
 # Application definition
