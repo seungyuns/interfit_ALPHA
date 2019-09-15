@@ -1,0 +1,28 @@
+{%extends 'base.html' %}
+
+{%block contents%}
+<div class="container">
+    <h1> Sign Up!</h1>
+
+    <form method = "POST" action = "{%url 'signup'%}"> <!-- 주의코드 --> 
+        
+        {%csrf_token%}<!-- 주의코드 -->
+
+        Username :
+        <br>
+        <input name="username" tyoe="text" value="">
+        <br>
+        Password :
+        <br>
+        <input name="password1" type="passwprd" value="">
+        <br>
+        Confirm Password :
+        <br>
+        <input name="password2" type="password" value="">
+        <br>
+        <br>
+        <input calss = "btn btn-primary" type="submit" value="Sign Up!">
+
+    </form>
+</div>
+{%endblock%}
