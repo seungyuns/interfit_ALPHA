@@ -7,11 +7,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY =os.environ['SECRET_KEY']
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = False
 
-ALLOWED_HOSTS = ['django-env.gnbh4iahs6.ap-northeast-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['django-env.gnbh4iahs6.ap-northeast-2.elasticbeanstalk.com','127.0.0.1']
 
 
 # Application definition
@@ -73,7 +73,6 @@ DATABASES = {
 
 
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -108,3 +107,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'positionapp', 'static'),
+    os.path.join(BASE_DIR, 'resumeapp', 'static')
+] # call the dir of staticfiles in app
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# specify the location where the statifile will be collectied
