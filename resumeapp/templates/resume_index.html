@@ -2,6 +2,7 @@
 
 {%block contents %}
 <body>
+
     <div>
         <div class="jumbotron" style="padding-top:100px; height:400px; ">
             <h1 class="display-4">
@@ -16,8 +17,16 @@
                 <hr class="my-4">
                 <p>DeepLearning 구직자 추천 서비스</p>
                 <p>문의 사항이 있으면 자유롭게 문의 해 주세요.</p>
-                
-                </div>
+                <p>{{resumelist}}</p>
+            </div>
+            
+
+            {% if popup %}
+            <script>
+                alert('성공적으로 저장되었습니다.');
+            </script>
+            {% endif %}
+
         </div>
     </div>
 </body>

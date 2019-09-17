@@ -1,10 +1,17 @@
 {%extends 'base.html' %}
 
 {%block contents%}
+<style>
+.bootstrap-select .dropdown-menu.inner{
+    height: 280px;
+}
+
+</style>
 <div class="jumbotron jumbotron-fluid" style="padding-top:100px;" >
     <div class="container">
       <h1 class="display-4" style="font-size:50px; font-weight:600; color:darkslategray" >이력서 등록</h1>
       <p class="lead"> &nbsp;&nbsp;새로운 이력서를 등록해 주세요.</p>
+      <h6> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 현재 등록된 이력서 : {{resume_count}}</h6>
     </div>
 </div>
 
@@ -16,9 +23,9 @@
     <!-- <h1> Register </h1> -->
     <!-- <br> -->
 
-    <form method = "POST" action = "{% url 'resume_create' %}"> <!-- 주의코드 --> 
+    <form method = "POST" action = "{% url 'resume_create' %}"> 
         
-        {%csrf_token%}<!-- 주의코드 -->
+        {%csrf_token%}
 
         <div class="card" style="">
             <div class="card-body">

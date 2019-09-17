@@ -2,8 +2,10 @@ from django.shortcuts import render,redirect
 from django.utils import timezone
 from .models import Resumelist
 
+from django.contrib import messages
+
 def resume_index(request):
-    return render(request, 'resume_index.html')
+    return render(request, 'resume_index.html' )
 
 
 def resume_list(request):
@@ -25,14 +27,15 @@ def resume_input(request):
     edu = ['고졸','전졸','대졸(학사)','대학원졸(석사)','대학원졸(박사)']
     outcome = ['합','불']
 
+    resume_count = Resumelist.objects.all().count()
 
-    return render(request, 'resume_input.html', { 'sex' : sex, 'company_list' : company_list, 'edu':edu, 'position' : position , 'position2' : position2, 'outcome' : outcome, 'position_detail1' : position_detail1, 'position_detail2' : position_detail2, 'position_detail3' : position_detail3, 'position_detail4' : position_detail4, 'position_detail5' : position_detail5  })
+    return render(request, 'resume_input.html', { 'sex' : sex, 'company_list' : company_list, 'edu':edu, 'position' : position , 'position2' : position2, 'outcome' : outcome, 'position_detail1' : position_detail1, 'position_detail2' : position_detail2, 'position_detail3' : position_detail3, 'position_detail4' : position_detail4, 'position_detail5' : position_detail5, 'resume_count' : resume_count  })
 
 
 
-def resume_create(request): # 입력받은 내용 데이터베이스에 넣어주기
+def resume_create(request): 
     resumelist = Resumelist()  
-    resumelist.company = request.POST['company'] #폼에 입력했던 name이 title 정보를 끌어온다.
+    resumelist.company = request.POST['company'] 
     resumelist.position = request.POST['position']
     resumelist.position2 = request.POST['position2']
     resumelist.position_detail = request.POST['position_detail']
@@ -43,8 +46,11 @@ def resume_create(request): # 입력받은 내용 데이터베이스에 넣어�
     resumelist.work_year = request.POST['work_year']
     resumelist.salary = request.POST['salary']
     resumelist.resume_detail = request.POST['resume_detail']
-    resumelist.outcome = request.POST['outcome']  #폼에 입력했던 name이 body 정보를 끌어온다.
-    resumelist.pub_date = timezone.datetime.now() # 작성 시간 출력해주는 함수, 상단에 임포트 해와야 함.
+    resumelist.outcome = request.POST['outcome']  
+    resumelist.pub_date = timezone.datetime.now() 
     resumelist.save()
-    return redirect('resume_index')
+
+    # return redirect('resume_index')
+
+    return render(request, 'resume_index.html', { 'popup':True})
 
