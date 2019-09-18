@@ -1,19 +1,30 @@
 {%extends 'base.html' %}
 
 {%block contents %}
+
 <body>
+    <div class="jumbotron jumbotron-fluid" style="padding-top:100px;" >
+        <div class="container">
+            <h1 class="display-4" style="font-size:50px; font-weight:600; color:darkslategray" >등록된 이력서 </h1>
+            <p class="lead"> &nbsp;&nbsp; 등록된 이력서를 확인해 주세요. </p>
+            <h6> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 현재 등록된 이력서 : {{resume_count}}</h6>
+        </div>
+    </div>
+    
     {% for resumelist in resumelist.all %}
     <div class="container">
         <div class="card" style="padding:7px" >
             <div class="card-body">
-            <a href="#"> <h5 class="card-title">{{resumelist.resume_name}}</h5></a>
-            <h6 class="card-subtitle mb-2 text-muted">{{resumelist.born_year}} - {{resumelist.pub_date}}</h6>
+            <a href="{% url 'resume_detail' resumelist.id %}"> <h5 class="card-title">{{resumelist.resume_name}}</h5></a>
+            <h6 class="card-subtitle mb-2 text-muted">{{resumelist.work_year}} - {{resumelist.born_year}} - {{resumelist.pub_date}}</h6>
             <p class="card-text">{{resumelist.summary}}</p>
             </div>
         </div>
     </div>
     <br>
     {% endfor %}
+
+
 </body>
 
 {%endblock%}

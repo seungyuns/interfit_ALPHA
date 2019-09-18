@@ -9,7 +9,8 @@ urlpatterns = [
     #resumeapp
     path('',resumeapp.views.resume_index, name='resume_index'),
     path('resume_input/',resumeapp.views.resume_input, name='resume_input'),
-    # path('resume_list/',resumeapp.views.resume_list, name='resume_list'),
+    path('resume_list/',resumeapp.views.resume_list, name='resume_list'),
+    path('resume_list/<int:resumelist_id>/', resumeapp.views.resume_detail, name='resume_detail'),
     path('resume_input/resume_create/',resumeapp.views.resume_create, name="resume_create"),
     
     #positionapp

@@ -1,6 +1,11 @@
 {%extends 'base.html' %}
 
 {%block contents%}
+<style>
+    .bootstrap-select .dropdown-menu.inner{
+        height: 280px;
+    }
+</style>
 
 <div class="jumbotron jumbotron-fluid" style="padding-top:100px;" >
     <div class="container">
@@ -23,6 +28,13 @@
                 <br>
                 채용내용 요약 :
                 <input name="recruit_summary" size="10" type="text" style="margin-left: 20px; margin-top: 10px; width:500px;">
+                <br>
+                담당자 연락처 :
+                <input name="recruit_phone" size="10" type="text" style="margin-left: 20px; margin-top: 10px; width:200px;" value="">
+                <br>
+                담당자 이메일 :
+                <input name="recruit_email" size="10" type="text" style="margin-left: 20px; margin-top: 10px; width:200px;" value="">
+                <br>
                 <br>
                 지원회사 분류 :
                 <select name = 'recruit_company' class="selectpicker" data-live-search="true" style="margin-left: 50px; margin-top: 30px; ">

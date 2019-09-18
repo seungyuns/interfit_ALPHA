@@ -20,6 +20,8 @@ def position_create(request):
     recruitlist = Recruitlist() 
     recruitlist.recruit_company_name = request.POST['recruit_company_name'] 
     recruitlist.recruit_summary = request.POST['recruit_summary']
+    recruitlist.recruit_phone = request.POST['recruit_phone']
+    recruitlist.recruit_email = request.POST['recruit_email']
     recruitlist.recruit_company = request.POST['recruit_company']
     recruitlist.recruit_position = request.POST['recruit_position']
     recruitlist.recruit_position2 = request.POST['recruit_position2']
@@ -30,4 +32,5 @@ def position_create(request):
     recruitlist.pub_date = timezone.datetime.now()
     recruitlist.save()
     
-    return redirect('position_input')
+    
+    return render(request, 'resume_index.html', {'popup':True})

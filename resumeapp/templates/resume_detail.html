@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block contents %}
+<br>
+<div class="container" style="padding-top:100px;">
+    <div class="card" >
+        <div class="card-body">
+        <h5 class="card-title">{{resumedetail.resume_name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{resumedetail.work_year}} - {{year}} 년 {{month}} 개월  {{resumedetail.pub_date}}</h6>
+        <p class="card-text">{{resumedetail.resume_detail}}</p>
+        </div>
+    </div>
+</div>
+    <br>
+    <div class="container">
+        <br>
+        <button type="button" class="btn btn-dark"><a href="{% url 'resume_index' %}"  style="color:white;" > 홈으로 가기 </a></button>
+    </div>
+
+{%endblock%}

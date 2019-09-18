@@ -4,6 +4,8 @@ class Recruitlist(models.Model):
 
     recruit_company_name = models.CharField(max_length=100)
     recruit_summary = models.CharField(max_length=100) 
+    recruit_phone = models.CharField(max_length=100, null=True) 
+    recruit_email = models.CharField(max_length=100, null=True) 
     recruit_company = models.CharField(max_length=100)  
     recruit_position = models.CharField(max_length=100)
     recruit_position2 = models.CharField(max_length=100)

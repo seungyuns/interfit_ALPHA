@@ -1,5 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
+import time
 from .models import Resumelist
 
 from django.contrib import messages
@@ -10,7 +11,15 @@ def resume_index(request):
 
 def resume_list(request):
     resumelist = Resumelist.objects
-    return render(request, 'resume_list.html', { 'resumelist' : resumelist })
+    resume_count = Resumelist.objects.all().count()
+    work = resume_list
+    return render(request, 'resume_list.html', { 'resumelist' : resumelist, 'resume_count' : resume_count })
+
+def resume_detail(request, resumelist_id):
+    resumedetail = get_object_or_404(Resumelist, pk=resumelist_id)
+    year = int(resumedetail.work_year)//10
+    month = int(resumedetail.work_year)%10
+    return render(request, 'resume_detail.html', {'resumedetail':resumedetail, 'year':year, 'month':month })
 
 
 def resume_input(request):
@@ -45,6 +54,8 @@ def resume_create(request):
     resumelist.final_edu = request.POST['final_edu']
     resumelist.work_year = request.POST['work_year']
     resumelist.salary = request.POST['salary']
+    resumelist.phone_number = request.POST['phone_number']
+    resumelist.email_address = request.POST['email_address']
     resumelist.resume_detail = request.POST['resume_detail']
     resumelist.outcome = request.POST['outcome']  
     resumelist.pub_date = timezone.datetime.now() 
