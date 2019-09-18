@@ -10,8 +10,8 @@ SECRET_KEY =os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = False
-DEBUG = True
+DEBUG = False
+# DEBUG = True
 
 ALLOWED_HOSTS = ['django-env.gnbh4iahs6.ap-northeast-2.elasticbeanstalk.com','127.0.0.1']
 
