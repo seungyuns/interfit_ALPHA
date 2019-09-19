@@ -16,8 +16,9 @@
         <div class="card" style="padding:7px" >
             <div class="card-body">
             <a href="{% url 'resume_detail' resumelist.id %}"> <h5 class="card-title">{{resumelist.resume_name}}</h5></a>
-            <h6 class="card-subtitle mb-2 text-muted">{{resumelist.work_year}} - {{resumelist.born_year}} - {{resumelist.pub_date}}</h6>
-            <p class="card-text">{{resumelist.summary}}</p>
+            <h6 class="card-subtitle mb-2 text-muted"> {{resumelist.born_year}} - {{resumelist.sex}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{resumelist.pub_date}}</h6>
+            <p class="card-text">{{resumelist.summary}} ... </p>
             </div>
         </div>
     </div>
