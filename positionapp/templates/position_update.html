@@ -38,7 +38,7 @@
                 <br>
                 지원회사 분류 :
                 <select name = 'recruit_company' class="selectpicker" data-live-search="true" style="margin-left: 50px; margin-top: 30px; ">
-                    <option value="null" selected  >해당 없음</option>
+                    <option value="{{updates_recruit.recruit_company}}" selected  >{{updates_recruit.recruit_company}}</option>
                     {% for company_list in company_list %}
                         <option value="{{company_list}}" style="color: black">{{company_list}}</option>
                     {% endfor %}
@@ -52,51 +52,59 @@
               <h5 class="card-title" style="font-weight: 600;"  >채용 포지션 정보</h5>
               <h6 class="card-subtitle mb-2 text-muted">채용 포지션 분류</h6>
 
-                채용직무 :
-                <select class="selectpicker" name = 'recruit_position'  data-live-search="true" style="margin-left: 10px">
-                    <option value="null" selected  >해당 없음</option>
-                    {% for position in position %}
-                        <option value="{{position}}" style="color: black">{{position}}</option>
-                    {% endfor %}
-                </select>
-                <br>
                 채용직급 :
-                <select class="selectpicker" name = 'recruit_position2' data-live-search="true" style="margin-left: 10px">
-                    <option value="null" selected  >해당 없음</option>
+                <select name = 'recruit_position2' style="margin-left: 10px">
+                    <option value="{{updates_recruit.recruit_position2}}" selected  >{{updates_recruit.recruit_position2}}</option>
                     {% for position2 in position2 %}
                         <option value="{{position2}}" style="color: black">{{position2}}</option>
                     {% endfor %}
+                    <option value="null" >해당 없음</option>
+                </select>
+                <br>
+                채용직무 :
+                <select id="recruit_position" name = 'recruit_position'  style="margin-left: 10px; margin-top: 10px">
+                    <option value="{{updates_recruit.recruit_position}}" selected  >{{updates_recruit.recruit_position}}</option>
+                    {% for position in position %}
+                        <option value="{{position}}" style="color: black">{{position}}</option>
+                    {% endfor %}
+                    <option value="null" >해당 없음</option>
                 </select>
                 <br>
                 직무상세 :
-                <select class="selectpicker" name = 'recruit_position_detail' data-live-search="true" style="margin-left: 10px">
-                    <option value="null" selected  >해당 없음</option>
-                    <optgroup label="경영지원">
+                <select id="recruit_position_detail" name = 'recruit_position_detail' style="margin-left: 10px; margin-top:10px">
+                    <option value="{{updates_recruit.recruit_position_detail}}" >{{updates_recruit.recruit_position_detail}}</option>
+                    <!-- <optgroup label="경영지원"> -->
                     {% for position_detail1 in position_detail1 %}
-                        <option value="{{position_detail1}}" style="color: black">{{position_detail1}}</option>
+                        <option class="경영지원" value="{{position_detail1}}" style="color: black">{{position_detail1}}</option>
                     {% endfor %}
-                    </optgroup>
-                    <optgroup label="IT개발">
+                    <!-- </optgroup> -->
+                    <!-- <optgroup label="IT개발"> -->
                     {% for position_detail2 in position_detail2 %}
-                        <option value="{{position_detail2}}" style="color: black">{{position_detail2}}</option>
+                        <option class="IT개발" value="{{position_detail2}}" style="color: black">{{position_detail2}}</option>
                     {% endfor %}
-                    </optgroup>
-                    <optgroup label="생산/제조/연구개발">
+                    <!-- </optgroup> -->
+                    <!-- <optgroup label="생산/제조/연구개발"> -->
                     {% for position_detail3 in position_detail3 %}
-                        <option value="{{position_detail3}}" style="color: black">{{position_detail3}}</option>
+                        <option class="연구개발(R&D)/생산/제조" value="{{position_detail3}}" style="color: black">{{position_detail3}}</option>
                     {% endfor %}
-                    </optgroup>
-                    <optgroup label="영업/마케팅">
+                    <!-- </optgroup> -->
+                    <!-- <optgroup label="영업/마케팅"> -->
                     {% for position_detail4 in position_detail4 %}
-                        <option value="{{position_detail4}}" style="color: black">{{position_detail4}}</option>
+                        <option class="영업/마케팅" value="{{position_detail4}}" style="color: black">{{position_detail4}}</option>
                     {% endfor %}
-                    </optgroup>
-                    <optgroup label="전문직/특수직무">
+                    <!-- </optgroup> -->
+                    <!-- <optgroup label="전문직/특수직무"> -->
                     {% for position_detail5 in position_detail5 %}
-                        <option value="{{position_detail5}}" style="color: black">{{position_detail5}}</option>
+                        <option class="전문직/특수직무" value="{{position_detail5}}" style="color: black">{{position_detail5}}</option>
                     {% endfor %}
-                    </optgroup>
+                    <option class="null" value="null" >직무를 선택해주세요.</option>
+                    <!-- </optgroup> -->
                 </select>
+                <script src="//code.jquery.com/jquery.min.js"></script>
+                <script src='//rawgit.com/tuupola/jquery_chained/master/jquery.chained.min.js'></script>
+                <script>
+                    $("#recruit_position_detail").chained("#recruit_position");
+                </script>
                 <br>
                 연봉 :
                 <input name="recruit_salary" size="10" type="number" min='0' style="margin-left: 33px; margin-top: 10px; width:100px; " value="{{updates_recruit.recruit_salary}}">(만원)
@@ -121,7 +129,7 @@
             </div>
         </div>
         <br>
-        <button class = "btn btn-secondary" type="submit" style="margin-bottom: 200px;" >등록하기</button>
+        <button class = "btn btn-secondary" type="submit" style="margin-bottom: 200px;" >수정하기</button>
     </form>
 </div>
 </div>

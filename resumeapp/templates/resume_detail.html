@@ -18,10 +18,10 @@
         </pre>
 
         {% if user.is_authenticated %}
-        <a href="{% url 'resume_delete' resumedetail.id %}" class="card-link"> 삭제하기 </a>
         <a href="{% url 'resume_update' resumedetail.id %}" class="card-link"> 수정하기 </a>
+        <a href="{% url 'resume_delete' resumedetail.id %}" class="card-link"> 삭제하기 </a>
         {% endif %}
-        
+
     </div>
     </div>
 </div>
