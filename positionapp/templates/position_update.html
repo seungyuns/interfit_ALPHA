@@ -9,15 +9,14 @@
 
 <div class="jumbotron jumbotron-fluid" style="padding-top:100px;" >
     <div class="container">
-      <h1 class="display-4" style="font-size:50px; font-weight:600; color:darkslategray" >채용공고 등록</h1>
-      <p class="lead"> &nbsp;&nbsp;새로운 채용공고를 등록해 주세요.</p>
-      <h6> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 현재 등록된 채용공고 : {{recruitlist_count}}</h6>
+      <h1 class="display-4" style="font-size:50px; font-weight:600; color:darkslategray" >채용공고 수정</h1>
+      <p class="lead"> &nbsp;&nbsp;새로운 채용공고를 수정해 주세요.</p>
     </div>
 </div>
 <div class="container">
     <!-- <h1> Register </h1> -->
 
-    <form method = "POST" action = "{% url 'position_create' %}"> <!-- 주의코드 --> 
+    <form method = "POST" action = "{% url 'position_edit' updates_recruit.id %}"> <!-- 주의코드 --> 
         {%csrf_token%}<!-- 주의코드 -->
 
         <div class="card" >
@@ -25,16 +24,16 @@
               <h5 class="card-title" style="font-weight: 600;" >채용 정보</h5>
               <h6 class="card-subtitle mb-2 text-muted">채용 정보 입력</h6>
                 기업명 :
-                <input name="recruit_company_name" size="10" type="text" style="margin-left: 72px; margin-top: 10px; width:200px;">
+                <input name="recruit_company_name" size="10" type="text" style="margin-left: 72px; margin-top: 10px; width:200px;" value="{{updates_recruit.recruit_company_name}}">
                 <br>
                 채용내용 요약 :
-                <input name="recruit_summary" size="10" type="text" style="margin-left: 20px; margin-top: 10px; width:500px;">
+                <input name="recruit_summary" size="10" type="text" style="margin-left: 20px; margin-top: 10px; width:500px;" value="{{updates_recruit.recruit_summary}}">
                 <br>
                 담당자 연락처 :
-                <input name="recruit_phone" size="10" type="text" style="margin-left: 20px; margin-top: 10px; width:200px;" value="">
+                <input name="recruit_phone" size="10" type="text" style="margin-left: 20px; margin-top: 10px; width:200px;" value="{{updates_recruit.recruit_phone}}">
                 <br>
                 담당자 이메일 :
-                <input name="recruit_email" size="10" type="text" style="margin-left: 20px; margin-top: 10px; width:200px;" value="">
+                <input name="recruit_email" size="10" type="text" style="margin-left: 20px; margin-top: 10px; width:200px;" value="{{updates_recruit.recruit_email}}">
                 <br>
                 <br>
                 지원회사 분류 :
@@ -100,12 +99,12 @@
                 </select>
                 <br>
                 연봉 :
-                <input name="recruit_salary" size="10" type="number" min='0' style="margin-left: 33px; margin-top: 10px; width:100px; " value="">(만원)
+                <input name="recruit_salary" size="10" type="number" min='0' style="margin-left: 33px; margin-top: 10px; width:100px; " value="{{updates_recruit.recruit_salary}}">(만원)
                 <br>
                 <br>
                 채용직무 상세설명 :
                 <br>
-                <textarea name="recruit_position_detail2" cols='135' rows='5' style=" margin-left: 10px; margin-top: 10px;" placeholder="상세 사항을 적어주세요 ... " ></textarea>
+                <textarea name="recruit_position_detail2" cols='135' rows='5' style=" margin-left: 10px; margin-top: 10px;" placeholder="상세 사항을 적어주세요 ... " >{{updates_recruit.recruit_position_detail2}}</textarea>
                 <br>
                 <br>
 
@@ -116,7 +115,7 @@
         <div class="card" style="">
             <div class="card-body">
               <h5 class="card-title" style="font-weight: 600;" >채용기업 상세정보</h5>
-                    <textarea name="recruit_company_detail" cols='135' rows='20' style="margin-left: 10px; margin-top: 10px;" placeholder="상세 사항을 적어주세요 ... " ></textarea>
+                    <textarea name="recruit_company_detail" cols='135' rows='20' style="margin-left: 10px; margin-top: 10px;" placeholder="상세 사항을 적어주세요 ... " >{{updates_recruit.recruit_company_detail}}</textarea>
                     <br>
                     <br>
             </div>

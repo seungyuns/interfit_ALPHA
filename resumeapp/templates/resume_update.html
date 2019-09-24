@@ -1,0 +1,155 @@
+{%extends 'base.html' %}
+
+{%block contents%}
+<style>
+.bootstrap-select .dropdown-menu.inner{
+    height: 280px;
+}
+</style>
+
+<div class="jumbotron jumbotron-fluid" style="padding-top:100px;" >
+    <div class="container">
+      <h1 class="display-4" style="font-size:50px; font-weight:600; color:darkslategray" >이력서 수정</h1>
+      <p class="lead"> &nbsp;&nbsp;새로운 이력서를 수정해 주세요.</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <form method = "POST" action = "{% url 'resume_edit' updates.id %}"> 
+        
+        {%csrf_token%}
+
+        <div class="card" style="">
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: 600;" >지원 회사 정보</h5>
+              <h6 class="card-subtitle mb-2 text-muted">지원 회사 분류  </h6>
+                지원회사 :
+                <select name = 'company' class="selectpicker" data-live-search="true" style="margin-left: 10px">
+                    <option value="null" selected  >해당 없음</option>
+                    {% for company_list in company_list %}
+                        <option value="{{company_list}}" style="color: black">{{company_list}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: 600;"  >지원 포지션 정보</h5>
+              <h6 class="card-subtitle mb-2 text-muted">포지션 분류</h6>
+
+                지원직무 :
+                <select class="selectpicker" name = 'position'  data-live-search="true" style="margin-left: 10px">
+                    <option value="null" selected  >해당 없음</option>
+                    {% for position in position %}
+                        <option value="{{position}}" style="color: black">{{position}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                지원직급 :
+                <select class="selectpicker" name = 'position2' data-live-search="true" style="margin-left: 10px">
+                    <option value="null" selected  >해당 없음</option>
+                    {% for position2 in position2 %}
+                        <option value="{{position2}}" style="color: black">{{position2}}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                직무상세 :
+                <select class="selectpicker" name = 'position_detail' data-live-search="true" style="margin-left: 10px">
+                    <option value="null" selected  >해당 없음</option>
+                    <optgroup label="경영지원">
+                    {% for position_detail1 in position_detail1 %}
+                        <option value="{{position_detail1}}" style="color: black">{{position_detail1}}</option>
+                    {% endfor %}
+                    </optgroup>
+                    <optgroup label="IT개발">
+                    {% for position_detail2 in position_detail2 %}
+                        <option value="{{position_detail2}}" style="color: black">{{position_detail2}}</option>
+                    {% endfor %}
+                    </optgroup>
+                    <optgroup label="생산/제조/연구개발">
+                    {% for position_detail3 in position_detail3 %}
+                        <option value="{{position_detail3}}" style="color: black">{{position_detail3}}</option>
+                    {% endfor %}
+                    </optgroup>
+                    <optgroup label="영업/마케팅">
+                    {% for position_detail4 in position_detail4 %}
+                        <option value="{{position_detail4}}" style="color: black">{{position_detail4}}</option>
+                    {% endfor %}
+                    </optgroup>
+                    <optgroup label="전문직/특수직무">
+                    {% for position_detail5 in position_detail5 %}
+                        <option value="{{position_detail5}}" style="color: black">{{position_detail5}}</option>
+                    {% endfor %}
+                    </optgroup>
+                </select>
+                <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            </div>
+        </div>
+
+        
+        <div class="card" style="">
+            <div class="card-body">
+              <h5 class="card-title" style="font-weight: 600;" >지원자 이력서 정보</h5>
+              <h6 class="card-subtitle mb-2 text-muted">이력서 상세정보 입력</h6>
+
+                    이름 :
+                    <input name="resume_name" size="10" type="text" style="margin-left: 50px; margin-top: 10px; width:100px;" value={{updates.resume_name}}>
+                    <br>
+                    성별 :
+                    <select name="sex" class="booking_input booking_input_container" style="margin-left: 50px; margin-top: 10px; width:100px;" required >
+                        <option value="" selected disabled hidden>선택</option>
+                        {% for sex in sex %}
+                            <option value="{{sex}}" style="color: black">{{sex}}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+            
+                    출생년도 :
+                    <input name="born_year" size="10" type="text" style="margin-left: 18px; margin-top: 10px; width:100px;" value="{{updates.born_year}}">
+                    <br>
+                    학력사항 :
+                    <select name="final_edu" class="booking_input booking_input_container" style="margin-left: 18px; margin-top: 10px; width:100px;" required>
+                        <option value="" selected disabled hidden>선택</option>
+                        {% for edu in edu %}
+                            <option value="{{edu}}" style="color: black">{{edu}}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    총 경력 :
+                    <input name="work_year" size="10" type="number" min='0' max='1000' style="margin-left: 30px; margin-top: 10px; width:100px; " value="{{updates.work_year}}">
+                    <br>
+                    희망연봉 :
+                    <input name="salary" size="10" type="number" min='0' style="margin-left: 18px; margin-top: 10px; width:100px; " value="{{updates.salary}}">(만원)
+                    <br>
+                    연락처 :
+                    <input name="phone_number" size="10" type="text" style="margin-left: 33px; margin-top: 10px; width:200px;" value="{{updates.phone_number}}">
+                    <br>
+                    이메일 :
+                    <input name="email_address" size="10" type="text" style="margin-left: 33px; margin-top: 10px; width:200px;" value="{{updates.email_address}}">
+                    <br>
+                    <br>
+                    경력 상세 
+                    <br>
+                    <textarea name="resume_detail" cols='135' rows='20' style="margin-left: 10px; margin-top: 10px;" placeholder="상세 사항을 적어주세요 ... " >{{updates.resume_detail}}</textarea>
+                    <br>
+                    <br>
+                    
+
+                    합불여부 :
+                    <select name="outcome" class="booking_input booking_input_container" style="margin-left: 18px; margin-top: 10px" >
+                        <option value="null" selected >없음</option>
+                        {% for outcome in outcome %}
+                            <option value="{{outcome}}" style="color: black">{{outcome}}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+        </div>
+        <br>
+        <button class = "btn btn-secondary" type="submit" style="margin-bottom: 200px;" >이력서 수정하기</button>
+    </form>
+</div>
+</div>
+{%endblock%}

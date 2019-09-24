@@ -2,18 +2,33 @@
 {% block contents %}
 <br>
 <div class="container" style="padding-top:100px;">
-    <div class="card" >
+    <div class="card" style="width:1200px" >
         <div class="card-body">
-        <h5 class="card-title">{{resumedetail.resume_name}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{resumedetail.work_year}} - {{year}} 년 {{month}} 개월  {{resumedetail.pub_date}}</h6>
-        <p class="card-text">{{resumedetail.resume_detail}}</p>
-        </div>
+        <h5 class="card-title" style="font-size:30px; font-weight:800 ">{{resumedetail.resume_name}}</h5>
+        <h6 class="card-title"> {{resumedetail.born_year}} - {{resumedetail.sex}} </h6>
+        <h6 class="card-title"> 경력 : {{year}} 년 {{month}} 개월 </h6>
+        <h6 class="card-title"> 연락처 : {{resumedetail.phone_number}} </h6>
+        <h6 class="card-title"> 이메일 : {{resumedetail.email_address}} </h6>
+        <h6 class="card-title"> 직무 : {{resumedetail.position_detail}} </h6>
+        <h6 class="card-title"> 연봉 : {{resumedetail.salary}} (만) </h6>
+        <br>
+        <h5 class="card-title" style="font-size:20px; font-weight:800" >세부 경력 : </h6>
+        <pre>
+            <p class="card-text">{{resumedetail.resume_detail}}</p>
+        </pre>
+
+        {% if user.is_authenticated %}
+        <a href="{% url 'resume_delete' resumedetail.id %}" class="card-link"> 삭제하기 </a>
+        <a href="{% url 'resume_update' resumedetail.id %}" class="card-link"> 수정하기 </a>
+        {% endif %}
+        
+    </div>
     </div>
 </div>
     <br>
     <div class="container">
         <br>
-        <button type="button" class="btn btn-dark"><a href="{% url 'resume_index' %}"  style="color:white;" > 홈으로 가기 </a></button>
+        <button type="button" class="btn btn-dark"><a href="{% url 'resume_list' %}"  style="color:white;" > 리스트로 가기 </a></button>
     </div>
 
 {%endblock%}
